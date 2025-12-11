@@ -15,10 +15,7 @@ class _RecipeAppState extends State<RecipeApp> {
   String currentScreen = "recipes-screen";
 
   // selectedRatings is initially filled with empty strings because the rating is not yet given.
-  List<String> selectedRatings = List.filled(
-    recipes.length,
-    "",
-  );
+  List<String> selectedRatings = List.filled(recipes.length, "");
 
   String topRecipeName() {
     int bestValue = -1;
@@ -36,6 +33,13 @@ class _RecipeAppState extends State<RecipeApp> {
     return bestName;
   }
 
+  void submit() {
+    setState(() {
+      if (selectedRatings.length == recipes.length)
+        currentScreen = 'result_screen';
+    });
+  }
+
   void _restart() {
     setState(() {
       selectedRatings = List.filled(recipes.length, "");
@@ -43,18 +47,42 @@ class _RecipeAppState extends State<RecipeApp> {
     });
   }
 
+  double Function() get averageRating {
+    double average = 1;
+    int sum = 0;
+    for (int i = 0; i < recipes.length; i++) {
+      if (selectedRatings[i].isNotEmpty) sum++;
+    }
+    average = sum / recipes.length;
+  }
+     void _selectRating(String rating,int index){
+
+
+
+
+     }
+
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     Widget? screenWidget;
+if (currentScreen=='result_screen'){
+  screenWidget=ResultScreen(averageRating: averageRating,topRecipeName: bestName,onRestart: restart,)
+} 
+else if(currentScreen=='recipe_screen'){
 
+  screenWidget=RecipesScreen(onSelectRating: selectRating,onSubmit:submit ,)
+}
     return Scaffold(
       body: screenWidget,
-      backgroundColor: const Color.fromARGB(
-        255,
-        73,
-        168,
-        122,
-      ),
+      backgroundColor: const Color.fromARGB(255, 73, 168, 122),
     );
   }
 }

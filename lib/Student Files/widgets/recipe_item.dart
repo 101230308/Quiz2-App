@@ -20,13 +20,17 @@ class RecipeItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(index.toString(), style: TextStyle(fontWeight: FontWeight.bold)),
           Text(
-            "Recipe name goes here",
+            recipe.recipeName,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
+            ...emojiRatings.Map(recipe)=>{
+              onPressed:onSelectRating
+            };
           ),
 
           const SizedBox(height: 8),

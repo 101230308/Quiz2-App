@@ -22,10 +22,7 @@ class ResultScreen extends StatelessWidget {
           children: [
             Text(
               "Average Rating: ${averageRating.toStringAsFixed(1)} ⭐",
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 15),
             Text(
@@ -34,10 +31,7 @@ class ResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
-            ElevatedButton(
-              onPressed: onRestart,
-              child: const Text("Restart"),
-            ),
+            ElevatedButton(onPressed: onRestart, child: const Text("Restart")),
           ],
         ),
       ),
